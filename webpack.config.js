@@ -16,44 +16,44 @@ const __dirname = path.dirname(__filename);
 
 // Define the configuration object
 const config = {
-    // Specify the entry point of the application
-    entry: "./src/index.js",
-    // Specify the output directory and filename for the bundled code
-    output: {
-        path: path.resolve(__dirname, "build"),
-        filename: "bundle.js",
-    },
-    // Specify the file extensions that can be imported without specifying the extension
-    resolve: {
-        extensions: [".js", ".jsx"],
-    },
-    // Specify the rules for processing different types of files
-    module: {
-        rules: [
-            {
-                // Use Babel to transpile JavaScript and JSX files
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: "babel-loader",
-            },
-            {
-                // Use style-loader and css-loader to handle CSS files
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"],
-            },
-        ],
-    },
-    // Specify the plugins to be used during the build process
-    plugins: [
-        // Generate an HTML file with the bundled script injected
-        new HtmlWebpackPlugin({
-            template: "./src/index.html",
-        }),
-        // Remove unused CSS using PurgeCSS
-        new PurgeCSSPlugin({
-            paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true }),
-        }),
+  // Specify the entry point of the application
+  entry: "./src/index.js",
+  // Specify the output directory and filename for the bundled code
+  output: {
+    path: path.resolve(__dirname, "build"),
+    filename: "bundle.js",
+  },
+  // Specify the file extensions that can be imported without specifying the extension
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
+  // Specify the rules for processing different types of files
+  module: {
+    rules: [
+      {
+        // Use Babel to transpile JavaScript and JSX files
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: "babel-loader",
+      },
+      {
+        // Use style-loader and css-loader to handle CSS files
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
     ],
+  },
+  // Specify the plugins to be used during the build process
+  plugins: [
+    // Generate an HTML file with the bundled script injected
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+    }),
+    // Remove unused CSS using PurgeCSS
+    new PurgeCSSPlugin({
+      paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true }),
+    }),
+  ],
 };
 
 // Export the configuration object
